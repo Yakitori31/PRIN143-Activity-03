@@ -5,84 +5,56 @@
   xmlns="https://www.example.com"
   elementFormDefault="qualified">
 
-  <xs:element name="student">
+  <xs:element name="Game">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="name">
+        <xs:element name="Id" type="xs:positiveInteger"/>
+        <xs:element name="Title" type="xs:string"/>
+        <xs:element name="ReleaseDate" type="xs:string"/>
+        <xs:element name="Rating">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="lastName" type="xs:string"/>
-              <xs:element name="givenName" type="xs:string"/>
-              <xs:element name="middleName" type="xs:string"/>
+              <xs:element name="Status" type="xs:string"/>
+              <xs:element name="ReviewSummary" type="xs:string"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="birthDate" type="xs:date"/>
-        <xs:element name="gender">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="Male"/>
-              <xs:enumeration value="Female"/> 
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
-        <xs:element name="contactDetails">
+        <xs:element name="Price">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="emailAddress" type="xs:string"/>
-              <xs:element name="mobileNumber">
-                <xs:simpleType>
-                <xs:restriction base="xs:string">
-                <xs:pattern value="[0][9][1-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"></xs:pattern>
-                </xs:restriction>
-                </xs:simpleType>
+              <xs:element name="ActualPrice">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:decimal">
+                      <xs:attribute name="currency" type="xs:string" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
               </xs:element>
+              <xs:element name="CurrentPrice">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:decimal">
+                      <xs:attribute name="currency" type="xs:string" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="OnSale" type="xs:boolean"/>
             </xs:sequence>
+            <xs:attribute name="isFree" type="xs:boolean" use="required"/>
           </xs:complexType>
         </xs:element>
-        <xs:element name="address">
+        <xs:element name="Platform" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+        <xs:element name="Categories">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="line1" type="xs:string"/>
-              <xs:element name="city" type="xs:string"/>
-              <xs:element name="province" type="xs:string" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="yearLevel">
-          <xs:simpleType>
-            <xs:restriction base="xs:integer">
-              <xs:enumeration value="1" />
-              <xs:enumeration value="2" /> 
-              <xs:enumeration value="3" /> 
-              <xs:enumeration value="4" /> 
-              <xs:enumeration value="5" /> 
-              <xs:enumeration value="6" /> 
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
-        <xs:element name="course" type="xs:string"/>
-        <xs:element name="campus">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:enumeration value="Malolos" />
-              <xs:enumeration value="Makati" /> 
-              <xs:enumeration value="Mendiola" /> 
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:element>
-        <xs:element name="gwa" type="xs:decimal"/>
-        <xs:element name="isEnrolled" type="xs:boolean"/>
-        <xs:element name="dateEnrolled" type="xs:dateTime"/>
-        <xs:element name="subjects">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="subject" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="Category" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute name="id" type="xs:positiveInteger" />
     </xs:complexType>
   </xs:element>
+
 </xs:schema>
